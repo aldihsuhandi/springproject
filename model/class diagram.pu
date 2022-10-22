@@ -38,14 +38,15 @@ entity friend_list {
     * gmt_modified : date
 }
 
-entity chat_room {
+entity chatroom {
     * chatroom_id : string
     --
+    extend_info : string
     * gmt_create : date
     * gmt_modified : date
 }
 
-entity friend_room {
+entity friendroom {
     * user_id : string <<FK>>
     * friend_id : string <<FK>>
     --
@@ -55,17 +56,17 @@ entity friend_room {
 ' relation
 user }o--|| friend_list
 
-user }o--|| friend_room
+user }o--|| friendroom
 
 user }o--|| group_member
-chat_room }o--|| group_member
+chatroom }o--|| group_member
 
 user }o--|| chat
-chat_room }o--|| chat
+chatroom }o--|| chat
 
 
 skinparam chatroomInheritance 1
-chat_room <|-- friend_room
+chatroom <|-- friendroom
 
 
 @enduml
