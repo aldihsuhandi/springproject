@@ -4,6 +4,7 @@ CREATE TABLE users(
     user_id varchar(255) NOT NULL,
     email varchar(255) UNIQUE NOT NULL,
     username varchar(255) UNIQUE NOT NULL,
+    password varchar(255) NOT NULL,
     profile_picture longtext,
     banner longtext,
     status varchar(255),

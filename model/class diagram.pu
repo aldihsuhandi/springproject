@@ -24,6 +24,7 @@ entity user {
     --
     * email : string
     * username : string
+    * password : string
     * profile_picture : longtext
     * banner : longtext
     * status : string
