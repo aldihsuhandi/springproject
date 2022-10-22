@@ -1,0 +1,71 @@
+@startuml
+
+entity group_member {
+    * chatroom_id : string <<FK>>
+    * user_id : string <<FK>>
+    --
+    * is_muted : bool
+}
+
+entity chat {
+    * id : int
+    --
+    * chatroom_id : string <<FK>>
+    * user_id : string <<FK>>
+    * message : string
+    * is_deleted : bool
+    * is_edited : bool
+    * gmt_create : date
+    * gmt_modified : date
+}
+
+entity user {
+    * user_id : string
+    --
+    * email : string
+    * username : string
+    * profile_picture : longtext
+    * banner : longtext
+    * status : string
+}
+
+entity friend_list {
+    * user_id : string <<FK>>
+    * friend_id : string <<FK>>
+    --
+    * is_blocked : bool 
+    * gmt_create : date
+    * gmt_modified : date
+}
+
+entity chat_room {
+    * chatroom_id : string
+    --
+    * gmt_create : date
+    * gmt_modified : date
+}
+
+entity friend_room {
+    * user_id : string <<FK>>
+    * friend_id : string <<FK>>
+    --
+    * is_muted : bool
+}
+
+' relation
+user }o--|| friend_list
+
+user }o--|| friend_room
+
+user }o--|| group_member
+chat_room }o--|| group_member
+
+user }o--|| chat
+chat_room }o--|| chat
+
+
+skinparam chatroomInheritance 1
+chat_room <|-- friend_room
+
+
+@enduml
