@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context/
+  http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--validator-->
+    <bean id="userCreateValidator" class="com.project.webproject.executor.validator.user.UserCreateValidator"/>
+
+    <bean id="validatorMap" class="java.util.HashMap">
+        <constructor-arg>
+            <map key-type="java.lang.String" value-type="com.project.webproject.executor.validator.BaseValidator">
+                <entry key="REGISTER_USER" value-ref="userCreateValidator"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!--processor-->
+    <bean id="userCreateProcessor" class="com.project.webproject.executor.processor.impl.UserCreateProcessor"/>
+
+    <bean id="processorMap" class="java.util.HashMap">
+        <constructor-arg>
+            <map key-type="java.lang.String" value-type="com.project.webproject.executor.processor.BaseProcessor">
+                <entry key="REGISTER_USER" value-ref="userCreateProcessor"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean class="com.project.webproject.executor.ProcessorExecutor">
+        <property name="validators" ref="validatorMap"/>
+        <property name="processors" ref="processorMap"/>
+    </bean>
+
+    <!--service-->
+    <bean id="userService" class="com.project.webproject.service.UserService"/>
+
+
+</beans>

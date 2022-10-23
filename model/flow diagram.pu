@@ -1,0 +1,15 @@
+FE -> Controller : call REST API
+Controller -> Controller : convert json request to request object
+Controller -> Facade : call facade's method
+Facade -> ProcessorExecutor
+ProcessorExecutor -> Validator : validate request
+ProcessorExecutor -> Processor : process request
+Processor -> Service 
+Service -> Dalgen : execute dml or ddl
+Service <-- Dalgen : return sql result
+Processor <-- Service : return result
+Facade <-- Processor : return result
+Facade -> Facade : compose result (error message, error code, success)
+Controller <-- Facade : return result
+Controller -> Controller : convert result object to json result
+FE <-- Controller : return json result
