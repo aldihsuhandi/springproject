@@ -10,4 +10,7 @@ public interface UserController {
 
     @RequestMapping("/register")
     String create(@RequestParam(value = "request") String request);
+
+    @RequestMapping("/update")
+    String update(@RequestParam(value = "request") String request);
 }

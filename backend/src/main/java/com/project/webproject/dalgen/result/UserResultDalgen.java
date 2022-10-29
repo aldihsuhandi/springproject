@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserResultDalgen {
+public class UserResultDalgen extends BaseResultDalgen {
     private String userId;
 }

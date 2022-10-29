@@ -13,4 +13,9 @@ public class SpringException extends Exception {
         super(message, cause);
         this.errorCode = errorCode;
     }
+
+    public SpringException(String message, ErrorCodeEnum errorCode) {
+        super(message);
+        this.errorCode = errorCode;
+    }
 }
