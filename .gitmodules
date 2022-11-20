@@ -1,3 +1,6 @@
 [submodule "spring-frontend"]
 	path = spring-frontend
 	url = git@github.com:aldihsuhandi/spring-frontend.git
+[submodule "spring-backend"]
+	path = spring-backend
+	url = git@github.com:aldihsuhandi/spring-backend.git
