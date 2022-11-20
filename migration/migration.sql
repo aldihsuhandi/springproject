@@ -74,6 +74,7 @@ CREATE TABLE sessions(
     session_id varchar(255) NOT NULL,
     user_id varchar(255) NOT NULL,
     is_active boolean NOT NULL DEFAULT true,
+    session_dt DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     gmt_create DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     gmt_modified DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY(session_id),
