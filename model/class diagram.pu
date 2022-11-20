@@ -1,5 +1,7 @@
 @startuml
 
+left to right direction
+
 entity group_member {
     * chatroom_id : string <<FK>>
     * user_id : string <<FK>>
@@ -28,6 +30,16 @@ entity user {
     * profile_picture : longtext
     * banner : longtext
     * status : string
+    * gmt_create : date
+    * gmt_modified : date
+}
+
+entity session {
+    * session_id : string
+    --
+    * user_id : string <<FK>>
+    * gmt_create : date
+    * gmt_modified : date
 }
 
 entity friend_list {
@@ -55,16 +67,17 @@ entity friendroom {
 }
 
 ' relation
-user }o--|| friend_list
+user }o--o| friend_list
 
-user }o--|| friendroom
+user }o--o| friendroom
 
-user }o--|| group_member
+user }o--o| group_member
 chatroom }o--|| group_member
 
-user }o--|| chat
-chatroom }o--|| chat
+user }o--o| chat
+chatroom }o--o| chat
 
+user }o--o| session
 
 skinparam chatroomInheritance 1
 chatroom <|-- friendroom

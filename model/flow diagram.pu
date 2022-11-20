@@ -1,0 +1,11 @@
+FE -> Controller : call REST API
+Controller -> ProcessorExecutor : call process executor
+ProcessorExecutor -> Validator : validate request
+ProcessorExecutor -> Processor : process request
+Processor -> Service 
+Service -> Dalgen : execute dml or ddl
+Service <-- Dalgen : return sql result
+Processor <-- Service : return result
+ProcessorExecutor <-- Processor : return result
+Controller <-- ProcessorExecutor : compose result
+FE <-- Controller : return json result
