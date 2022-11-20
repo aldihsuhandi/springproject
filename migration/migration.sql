@@ -65,3 +65,13 @@ CREATE TABLE chats(
     FOREIGN KEY(user_id) REFERENCES users(user_id),
     FOREIGN KEY(chatroom_id) REFERENCES chatrooms(chatroom_id)
 );
+
+CREATE TABLE sessions(
+    session_id varchar(255) NOT NULL,
+    user_id varchar(255) NOT NULL,
+    is_active boolean NOT NULL DEFAULT true,
+    gmt_create DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    gmt_modified DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY(session_id),
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
