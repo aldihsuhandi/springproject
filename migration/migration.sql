@@ -1,5 +1,7 @@
 CREATE DATABASE spring;
 
+USE spring;
+
 CREATE TABLE users(
     user_id varchar(255) NOT NULL,
     email varchar(255) UNIQUE NOT NULL,
@@ -8,6 +10,7 @@ CREATE TABLE users(
     profile_picture longtext,
     banner longtext,
     status varchar(255),
+    is_active boolean NOT NULL DEFAULT true,
     gmt_create DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     gmt_modified DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY(user_id)
@@ -16,7 +19,7 @@ CREATE TABLE users(
 CREATE TABLE friend_list (
     user_id varchar(255) NOT NULL,
     friend_id varchar(255) NOT NULL,
-    is_blocked boolean NOT NULL DEFAULT false,
+    is_blocked boolean NOT NULL DEFAULT true,
     gmt_create DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     gmt_modified DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY(user_id, friend_id),
@@ -29,6 +32,7 @@ CREATE TABLE chatrooms (
     extend_info varchar(255),
     gmt_create DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     gmt_modified DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    is_active boolean,
     PRIMARY KEY(chatroom_id)
 );
 
